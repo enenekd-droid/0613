@@ -1,0 +1,115 @@
+.slot-machine {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.empty, .ready {
+  font-size: 1.5rem;
+  color: var(--text-muted);
+  font-weight: 300;
+  text-align: center;
+}
+
+.slots-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.slot {
+  background: linear-gradient(145deg, rgba(30, 41, 59, 0.9), rgba(15, 23, 42, 0.9));
+  border: 2px solid var(--primary);
+  border-radius: 1rem;
+  padding: 1.5rem 2rem;
+  min-width: 160px;
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.5), inset 0 2px 10px rgba(255,255,255,0.1);
+  overflow: hidden;
+  position: relative;
+}
+
+.slot::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: linear-gradient(180deg, rgba(255,255,255,0.1) 0%, transparent 50%, rgba(0,0,0,0.2) 100%);
+  pointer-events: none;
+}
+
+.slot-inner {
+  position: relative;
+  width: 100%;
+  text-align: center;
+  z-index: 1;
+}
+
+.slot-text {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: white;
+  text-shadow: 0 2px 10px rgba(59, 130, 246, 0.5);
+  white-space: nowrap;
+}
+
+.slot.spinning .slot-text {
+  filter: blur(1px);
+  animation: jitter 0.1s infinite;
+  color: #cbd5e1;
+}
+
+.slot.stopped {
+  animation: popIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  border-color: var(--accent);
+  box-shadow: 0 0 20px rgba(16, 185, 129, 0.4), inset 0 2px 10px rgba(255,255,255,0.1);
+}
+
+.slot.stopped .slot-text {
+  color: var(--accent);
+  text-shadow: 0 0 20px rgba(16, 185, 129, 0.5);
+}
+
+.result-message {
+  margin-top: 2.5rem;
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #fbbf24;
+  text-shadow: 0 4px 15px rgba(251, 191, 36, 0.4);
+}
+
+@keyframes jitter {
+  0% { transform: translateY(0); }
+  25% { transform: translateY(-8px); }
+  50% { transform: translateY(0); }
+  75% { transform: translateY(8px); }
+  100% { transform: translateY(0); }
+}
+
+@keyframes popIn {
+  0% { transform: scale(0.8); opacity: 0; }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+@media (max-width: 768px) {
+  .slot {
+    min-width: 120px;
+    height: 90px;
+    padding: 1rem;
+  }
+  .slot-text {
+    font-size: 1.8rem;
+  }
+  .result-message {
+    font-size: 1.8rem;
+  }
+}

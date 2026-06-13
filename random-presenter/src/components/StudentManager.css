@@ -1,0 +1,103 @@
+.student-manager {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.student-manager h2 {
+  margin-bottom: 1.5rem;
+  font-weight: 600;
+}
+
+.tabs {
+  display: flex;
+  margin-bottom: 1rem;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 0.5rem;
+  padding: 0.25rem;
+}
+
+.tab {
+  flex: 1;
+  background: transparent;
+  border: none;
+  padding: 0.5rem;
+  color: var(--text-muted);
+  font-family: inherit;
+  font-weight: 500;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: all 0.2s;
+}
+
+.tab.active {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--text-main);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.tab-content {
+  margin-bottom: 2rem;
+}
+
+.add-form {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.batch-form {
+  flex-direction: column;
+}
+
+.list-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.list-header h3 {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--text-muted);
+}
+
+.btn-sm {
+  padding: 0.25rem 0.75rem;
+  font-size: 0.875rem;
+  border-radius: 0.25rem;
+}
+
+.student-list {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding-right: 0.5rem;
+}
+
+.student-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 0.5rem;
+  transition: background 0.2s;
+}
+
+.student-item:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.empty-state {
+  text-align: center;
+  color: var(--text-muted);
+  padding: 2rem 0;
+  font-style: italic;
+}
