@@ -1,5 +1,5 @@
 import React from 'react';
-import { Play, Settings2 } from 'lucide-react';
+import MaterialIcon from './MaterialIcon';
 import './ControlPanel.css';
 
 export default function ControlPanel({ extractCount, setExtractCount, handleSpin, isSpinning, maxCount }) {
@@ -14,7 +14,7 @@ export default function ControlPanel({ extractCount, setExtractCount, handleSpin
     <div className="control-panel">
       <div className="settings-group">
         <label className="settings-label">
-          <Settings2 size={18} /> 뽑을 인원 수
+          <MaterialIcon name="settings" size={18} /> 뽑을 인원 수
         </label>
         <div className="count-control">
           <button 
@@ -44,7 +44,7 @@ export default function ControlPanel({ extractCount, setExtractCount, handleSpin
         onClick={handleSpin}
         disabled={isSpinning || maxCount === 0}
       >
-        <Play size={24} fill="currentColor" />
+        <MaterialIcon name="play_arrow" size={24} fill={1} />
         {isSpinning ? '추출 중...' : '발표자 뽑기'}
       </button>
     </div>

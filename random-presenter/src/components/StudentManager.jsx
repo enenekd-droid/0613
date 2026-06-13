@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { UserPlus, Users, Trash2 } from 'lucide-react';
+import MaterialIcon from './MaterialIcon';
 import './StudentManager.css';
 
 export default function StudentManager({ students, setStudents }) {
@@ -72,14 +72,14 @@ export default function StudentManager({ students, setStudents }) {
           onClick={() => setActiveTab('single')}
           type="button"
         >
-          <UserPlus size={18} /> 개별 추가
+          <MaterialIcon name="person_add" size={18} /> 개별 추가
         </button>
         <button 
           className={`tab ${activeTab === 'batch' ? 'active' : ''}`}
           onClick={() => setActiveTab('batch')}
           type="button"
         >
-          <Users size={18} /> 일괄 추가
+          <MaterialIcon name="group_add" size={18} /> 일괄 추가
         </button>
       </div>
 
@@ -129,7 +129,7 @@ export default function StudentManager({ students, setStudents }) {
                 title="삭제"
                 type="button"
               >
-                <Trash2 size={16} />
+                <MaterialIcon name="delete" size={16} />
               </button>
             </div>
           ))

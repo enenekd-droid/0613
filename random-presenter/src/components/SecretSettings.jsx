@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { X, Lock, Plus, Trash2 } from 'lucide-react';
+import MaterialIcon from './MaterialIcon';
 import './SecretSettings.css';
 
 export default function SecretSettings({ onClose, secretList, setSecretList, students }) {
@@ -17,10 +17,10 @@ export default function SecretSettings({ onClose, secretList, setSecretList, stu
 
   return (
     <div className="modal-overlay">
-      <div className="secret-modal glass">
+      <div className="secret-modal">
         <div className="modal-header">
-          <h2 className="modal-title"><Lock size={20} /> 비밀 설정 (교사용)</h2>
-          <button className="close-btn" onClick={onClose}><X size={24} /></button>
+          <h2 className="modal-title"><MaterialIcon name="lock" size={20} /> 비밀 설정 (교사용)</h2>
+          <button className="close-btn" onClick={onClose} aria-label="Close"><MaterialIcon name="close" size={24} /></button>
         </div>
         
         <div className="modal-content">
@@ -41,7 +41,7 @@ export default function SecretSettings({ onClose, secretList, setSecretList, stu
               ))}
             </select>
             <button className="btn btn-primary" onClick={handleAdd}>
-              <Plus size={18} /> 추가
+              <MaterialIcon name="add" size={18} /> 추가
             </button>
           </div>
 
@@ -54,7 +54,7 @@ export default function SecretSettings({ onClose, secretList, setSecretList, stu
                   <span className="secret-order">{idx + 1}</span>
                   <span className="secret-name">{name}</span>
                   <button className="btn-icon" onClick={() => handleRemove(idx)}>
-                    <Trash2 size={16} />
+                    <MaterialIcon name="delete" size={16} />
                   </button>
                 </div>
               ))

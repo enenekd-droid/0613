@@ -88,29 +88,41 @@ function App() {
     }, 2000); // 2초간 슬롯 회전
   };
 
+  const handleRemoveExtracted = (studentId) => {
+    const removedStudent = extracted.find(student => student.id === studentId);
+
+    setExtracted(prev => prev.filter(student => student.id !== studentId));
+    setStudents(prev => prev.filter(student => student.id !== studentId));
+
+    if (removedStudent) {
+      setSecretList(prev => prev.filter(name => name !== removedStudent.name));
+    }
+  };
+
   return (
     <div className="app-container">
-      <header className="glass">
+      <header>
         <h1>🎲 랜덤 발표자 추출기</h1>
         <p className="subtitle">긴장감 넘치는 수업 시간!</p>
       </header>
 
       <main className="main-content">
-        <section className="left-panel glass">
+        <section className="left-panel">
           <StudentManager students={students} setStudents={setStudents} />
         </section>
 
         <section className="right-panel">
-          <div className="slot-container glass">
+          <div className="slot-container">
             <SlotMachine 
               isSpinning={isSpinning} 
               extracted={extracted} 
               extractCount={extractCount}
               students={students}
+              onRemoveExtracted={handleRemoveExtracted}
             />
           </div>
           
-          <div className="control-container glass">
+          <div className="control-container">
             <ControlPanel 
               extractCount={extractCount} 
               setExtractCount={setExtractCount}

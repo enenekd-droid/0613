@@ -1,8 +1,17 @@
 import React, { useState, useEffect } from 'react';
+import Confetti from 'react-confetti';
+import MaterialIcon from './MaterialIcon';
 import './SlotMachine.css';
 
-export default function SlotMachine({ isSpinning, extracted, extractCount, students }) {
+export default function SlotMachine({ isSpinning, extracted, extractCount, students, onRemoveExtracted }) {
   const [displayNames, setDisplayNames] = useState([]);
+  const [windowDimensions, setWindowDimensions] = useState({ width: window.innerWidth, height: window.innerHeight });
+
+  useEffect(() => {
+    const handleResize = () => setWindowDimensions({ width: window.innerWidth, height: window.innerHeight });
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   useEffect(() => {
     let interval;
@@ -34,6 +43,8 @@ export default function SlotMachine({ isSpinning, extracted, extractCount, stude
     return <div className="slot-machine ready">준비 완료! 뽑기 버튼을 눌러주세요 🎲</div>;
   }
 
+  const showWinner = !isSpinning && extracted.length > 0;
+
   return (
     <div className="slot-machine">
       <div className={`slots-wrapper count-${displayNames.length > 3 ? 'many' : displayNames.length}`}>
@@ -48,8 +59,36 @@ export default function SlotMachine({ isSpinning, extracted, extractCount, stude
           </div>
         ))}
       </div>
-      {!isSpinning && extracted.length > 0 && (
-        <div className="result-message shake">🎉 발표를 부탁해요! 🎉</div>
+      
+      {showWinner && (
+        <div className="winner-overlay">
+          <Confetti 
+            width={windowDimensions.width} 
+            height={windowDimensions.height} 
+            recycle={false} 
+            numberOfPieces={500} 
+            gravity={0.15}
+          />
+          <div className="winner-content pop-in">
+            <h2 className="winner-title">🎉 당첨! 🎉</h2>
+            <div className="winner-names">
+              {extracted.map(student => (
+                <div key={student.id} className="winner-name-item">
+                  <span>{student.name}</span>
+                  <button
+                    type="button"
+                    className="winner-remove-button"
+                    onClick={() => onRemoveExtracted(student.id)}
+                    aria-label={`${student.name} remove`}
+                    title="Remove"
+                  >
+                    <MaterialIcon name="close" size={24} weight={600} />
+                  </button>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
       )}
     </div>
   );
