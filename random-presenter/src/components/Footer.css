@@ -1,10 +1,10 @@
 .app-footer {
   margin-top: auto;
   padding: 1.5rem 0;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-top: 1px solid var(--hairline-soft);
   text-align: center;
   font-size: 0.85rem;
-  color: rgba(255, 255, 255, 0.6);
+  color: var(--muted);
   width: 100%;
 }
 
@@ -24,7 +24,7 @@
 .footer-link-btn {
   background: none;
   border: none;
-  color: rgba(255, 255, 255, 0.8);
+  color: var(--muted);
   font-size: 0.85rem;
   cursor: pointer;
   padding: 0;
@@ -34,11 +34,11 @@
 }
 
 .footer-link-btn:hover {
-  color: #fff;
+  color: var(--ink);
 }
 
 .footer-divider {
-  color: rgba(255, 255, 255, 0.3);
+  color: var(--border-strong);
 }
 
 .footer-info p {
