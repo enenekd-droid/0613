@@ -4,6 +4,7 @@ import SlotMachine from './components/SlotMachine';
 import ControlPanel from './components/ControlPanel';
 import SecretSettings from './components/SecretSettings';
 import EthicsGate from './components/EthicsGate';
+import Footer from './components/Footer';
 import './App.css';
 
 function App() {
@@ -149,6 +150,8 @@ function App() {
           students={students}
         />
       )}
+      
+      <Footer />
     </div>
   );
 }
