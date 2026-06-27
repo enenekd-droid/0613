@@ -3,9 +3,12 @@ import StudentManager from './components/StudentManager';
 import SlotMachine from './components/SlotMachine';
 import ControlPanel from './components/ControlPanel';
 import SecretSettings from './components/SecretSettings';
+import EthicsGate from './components/EthicsGate';
 import './App.css';
 
 function App() {
+  const [hasAgreedToEthics, setHasAgreedToEthics] = useState(false);
+
   // 상태 초기화 시 localStorage 확인
   const [students, setStudents] = useState(() => {
     const saved = localStorage.getItem('randomPresenter_students');
@@ -98,6 +101,10 @@ function App() {
       setSecretList(prev => prev.filter(name => name !== removedStudent.name));
     }
   };
+
+  if (!hasAgreedToEthics) {
+    return <EthicsGate onAgree={() => setHasAgreedToEthics(true)} />;
+  }
 
   return (
     <div className="app-container">
